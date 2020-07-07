@@ -7,10 +7,14 @@ const tempElement = document.querySelector(".temperature-value p");
 const descElement = document.querySelector(".temperature-description p");
 const locationElement = document.querySelector(".location p");
 const notificationElement = document.querySelector(".notification");
+const button = document.getElementById("button");
+
+button.addEventListener('click', getCityCoords);
 
 //App Data
 
 const weather = {};
+let cityLocation = {};
 
 
 weather.temperature = {
@@ -73,4 +77,48 @@ function displayWeather(){
     tempElement.innerHTML = `${weather.temperature.value}°<span>C</span>`
     descElement.innerHTML = weather.description;
     locationElement.innerHTML = `${weather.city}, ${weather.country}`;
+}
+
+
+// C to F conversion
+function celsiusToFahrenheit(temperature){
+    return(temperature *9/5) + 32;
+}
+
+//WHES USER CLICKS TEMPERATURE ELEMENT
+
+tempElement.addEventListener("click", function(){
+    if(weather.temperature.value === undefined) return;
+    
+    if(weather.temperature.unit == "celsius"){
+        let fahrenheit = celsiusToFahrenheit(weather.temperature.value);
+        fahrenheit = Math.floor(fahrenheit);
+        
+        tempElement.innerHTML = `${fahrenheit}°<span>F</span>`;
+        weather.temperature.unit = "fahrenheit";
+    }else{
+        tempElement.innerHTML = `${weather.temperature.value}°<span>C</span>`;
+        weather.temperature.unit = "celsius";
+    }
+    
+});
+
+function getCityCoords(){
+    console.log("getCityCoords");
+    let cityName = document.getElementById('input').value;
+    document.getElementById('input').value = ''
+
+    
+    let cityNameApi = `https://maps.googleapis.com/maps/api/geocode/json?address=${cityName}&key=AIzaSyD0-OXLZLezzEusHzaJlmPmdT0bzZgr3l4`
+    
+    fetch(cityNameApi)
+  .then(response => response.json())
+  .then(function(data){
+       cityLocation = data.results[0].geometry.location;
+        getWeather(cityLocation.lat, cityLocation.lng);
+        });
+    
+    
+    ;
+    
 }
