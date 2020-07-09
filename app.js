@@ -122,3 +122,11 @@ function getCityCoords(){
     ;
     
 }
+//This stops the page refreshing when the enter key is pressed
+document.getElementById("form").onkeypress = function(e) {
+  var key = e.charCode || e.keyCode || 0;     
+  if (key == 13) {
+    getCityCoords();
+    e.preventDefault();
+  }
+}
