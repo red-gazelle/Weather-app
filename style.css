@@ -139,5 +139,13 @@ form.example::after {
   display: table;
 }
 
+.fa-map-marker{
+   color: #293251;
+   position: relative;
+   left: 240px;
+   top: 20px;
+}
 
-
+.fa-map-marker:hover{
+    cursor: pointer;
+}

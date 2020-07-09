@@ -8,8 +8,16 @@ const descElement = document.querySelector(".temperature-description p");
 const locationElement = document.querySelector(".location p");
 const notificationElement = document.querySelector(".notification");
 const button = document.getElementById("button");
+const currentLocation = document.getElementById("mapMarker");
+
 
 button.addEventListener('click', getCityCoords);
+currentLocation.addEventListener('click', function(){
+    document.location.reload()
+});
+
+
+
 
 //App Data
 
