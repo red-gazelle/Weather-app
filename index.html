@@ -7,12 +7,14 @@
   <title>Weather App - Javascript</title>
     <link rel="stylesheet" href="font/Rimouski.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
     <div class="container">
         <div class="app-title">
             <p>Weather</p>
+            <i class="fa fa-map-marker fa-3x" id="mapMarker" aria-hidden="true"></i>
         </div>
         <div class="notification"></div>
         <div class="weather-container">
@@ -28,6 +30,14 @@
             <div class="location">
                 <p>-</p>
             </div>
+            <form class="example" id="form" style="margin:auto;max-width:300px; margin-top: 20px">
+              <input type="text" id="input" placeholder="enter city" name="search2" autocomplete="off">
+              <button type="button" id="button"><i class="fa fa-search"></i></button>
+              <ul class="suggestions">
+                  <li>Filter for a city</li>
+                  <li>or a state</li>
+              </ul>
+            </form>
         </div>
     </div>
     <script src="app.js"></script>
